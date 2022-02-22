@@ -1,0 +1,64 @@
+---
+title: "Optimisation"
+author: "Parul Jain"
+date: "21/12/2021"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Max and min
+
+$f(x) = 2x^3 - 9x^2 + 12x + 6$
+
+## use mosaicCalc package and D
+
+```{r message = F}
+library(mosaicCalc)
+
+der1 <- D(2*x^3 - 9*x^2 + 12*x + 6 ~ x); der1
+```
+
+der1  is $6x^2 - 18x + 12$
+
+
+## Roots of $6x^2 - 18x + 12$
+
+```{r}
+polyroot(c(12, -18, 6))
+```
+
+roots (x values) correspond to what y values?
+
+```{r}
+func1 <- function(x) {
+  2*x^3 - 9*x^2 + 12*x + 6
+}
+
+func1(c(1,2))
+```
+
+## max or min?
+
+```{r}
+secder <- D(6*x^2 - 18*x + 12 ~ x)
+secder
+```
+
+secder is $12x - 18$ ; Plus or minus?
+
+```{r}
+func2 <- function(x) {
+  12*x - 18
+}
+func2(c(1,2))
+```
+
+# Plot
+
+```{r fig.width = 4, fig.height = 4}
+curve(2*x^3 - 9*x^2 + 12*x + 6, from = 0, to = 3,
+      ylab = expression(f(x) == 2*x^3 - 9*x^2 + 12*x + 6))
+```
+
